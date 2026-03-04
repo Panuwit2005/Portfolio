@@ -1,17 +1,14 @@
-/* --- 1. Base & Animations Setup --- */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* แยก Animation: Header แค่จางปรากฏ (Fade In) */
 @keyframes fadeInHeader {
     from { opacity: 0; }
     to { opacity: 1; }
 }
 
-/* แยก Animation: เนื้อหาให้จางและเลื่อนขึ้น (Fade In + Slide Up) */
 @keyframes fadeInUp {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
@@ -22,12 +19,11 @@ body {
     color: #e0e0e0;
     font-family: 'Inter', sans-serif;
     line-height: 1.6;
-    /* ลบ animation ออกจาก body เพื่อไม่ให้ตีกับส่วนอื่น */
 }
 
-/* --- 2. Fixed Header (แก้ปัญหาซ้อนและ Animation) --- */
 header { 
-    height: 80px; 
+    min-height: 80px;
+    height: auto;
     background-color: rgba(18, 18, 18, 0.98); 
     backdrop-filter: blur(10px);
     position: fixed; 
@@ -38,8 +34,7 @@ header {
     border-bottom: 1px solid #333;
     display: flex;
     align-items: center;
-    
-    /* ให้ Header ค่อยๆ ปรากฏขึ้นแบบนิ่งๆ ไม่ขยับขึ้นลง */
+    padding: 10px 0;
     animation: fadeInHeader 0.5s ease-in forwards;
 }
 
@@ -47,24 +42,39 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
     width: 90%;
     max-width: 1000px;
     margin: 0 auto;
+    gap: 15px;
 }
 
-.name-box h1 { font-size: 1.5rem; color: #88d8d0; }
-.name-box .role { color: #888; font-size: 0.8rem; }
+.name-box h1 { 
+    font-size: clamp(1.2rem, 5vw, 1.5rem); 
+    color: #88d8d0; 
+}
+
+.name-box .role { 
+    color: #888; 
+    font-size: 0.8rem; 
+}
+
+.social-links {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
 
 .social-links a {
     color: #ff99aa;
     text-decoration: none;
-    margin-left: 15px;
     font-size: 0.9rem;
     transition: 0.3s;
 }
 
 .resume-tag {
-    border: 1px solid #ff99aa; /* สีชมพูตามธีม */
+    border: 1px solid #ff99aa;
     padding: 5px 15px;
     border-radius: 4px;
     color: #ff99aa !important;
@@ -78,12 +88,9 @@ header {
     box-shadow: 0 0 10px rgba(255, 153, 170, 0.5);
 }
 
-/* --- 3. Container Management (แก้บัคหน้า Index และ Project ซ้อนกัน) --- */
-/* บังคับให้เนื้อหาที่ต่อจาก Header เว้นระยะลงมาเสมอ */
 header + .container, 
 header + main.container {
-    margin-top: 100px !important; 
-    /* ให้เนื้อหาค่อยๆ เลื่อนขึ้นมาดูมีมิติ */
+    margin-top: 120px !important; 
     animation: fadeInUp 0.8s ease-out forwards;
 }
 
@@ -94,12 +101,22 @@ header + main.container {
     padding: 20px 0;
 }
 
-/* --- 4. Main Sections (Index Page) --- */
 section { margin-bottom: 60px; }
 h2 { color: #88d8d0; margin-bottom: 25px; border-left: 4px solid #ff99aa; padding-left: 15px; }
 
-.hero { display: flex; align-items: center; gap: 30px; }
-.profile-img img { width: 300px; height: 300px; border-radius: 50%; object-fit: cover; border: 2px solid #333; }
+.hero { 
+    display: flex; 
+    align-items: center; 
+    gap: 30px; 
+}
+
+.profile-img img { 
+    width: 300px; 
+    height: 300px; 
+    border-radius: 50%; 
+    object-fit: cover; 
+    border: 2px solid #333; 
+}
 
 .edu-item {
     background: #1c1c1c;
@@ -112,12 +129,12 @@ h2 { color: #88d8d0; margin-bottom: 25px; border-left: 4px solid #ff99aa; paddin
 .tag-cloud { display: flex; flex-wrap: wrap; gap: 10px; }
 .tag { border: 1px solid #444; padding: 5px 15px; border-radius: 20px; font-size: 0.85rem; background: #1a1a1a; transition: 0.3s; }
 
-/* --- 5. Project Grid & Cards --- */
 .project-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr); 
     gap: 25px;
 }
+
 .project-card-link { text-decoration: none; color: inherit; }
 .project-card {
     background: #1c1c1c;
@@ -126,11 +143,11 @@ h2 { color: #88d8d0; margin-bottom: 25px; border-left: 4px solid #ff99aa; paddin
     border: 1px solid #222;
     transition: 0.3s;
 }
+
 .project-card:hover { transform: translateY(-5px); border-color: #ff99aa; }
 .project-card img { width: 100%; height: 200px; object-fit: cover; }
 .card-body { padding: 20px; }
 
-/* --- 6. Project Detail Page Specific --- */
 .back-link { color: #ff99aa; text-decoration: none; display: inline-block; margin-bottom: 20px; }
 .hero-image { width: 100%; max-width: 900px; border-radius: 12px; display: block; margin: 0 auto 30px; }
 .project-info-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 20px; margin-bottom: 30px; }
@@ -139,6 +156,21 @@ h2 { color: #88d8d0; margin-bottom: 25px; border-left: 4px solid #ff99aa; paddin
 .gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
 .gallery-grid img { width: 100%; height: 250px; object-fit: cover; border-radius: 8px; }
 
+.gallery-grid-full { 
+    display: grid; 
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 15px; 
+    align-items: start; 
+}
+
+.gallery-grid-full img { 
+    width: 100%; 
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+    display: block;
+}
+
 .download-link {
     display: block; width: fit-content; margin: 40px auto;
     color: #ff99aa; border: 2px solid #ff99aa; padding: 12px 30px; border-radius: 50px; text-decoration: none;
@@ -146,11 +178,9 @@ h2 { color: #88d8d0; margin-bottom: 25px; border-left: 4px solid #ff99aa; paddin
 }
 .download-link:hover { background: #ff99aa; color: #121212; }
 
-/* --- 7. Footer --- */
-/* --- 7. Footer (ปรับปรุงใหม่ให้เข้ากับธีม) --- */
 footer {
-    background: #0d0d0d; /* ปรับให้สว่างกว่าพื้นหลังหลักเล็กน้อยเพื่อสร้างมิติ */
-    padding: 80px 0 40px; /* เพิ่มพื้นที่ด้านบนให้ดูโปร่งขึ้น */
+    background: #0d0d0d; 
+    padding: 80px 0 40px; 
     margin-top: 100px;
     border-top: 1px solid #222;
     text-align: center;
@@ -160,7 +190,7 @@ footer {
     font-size: 2rem;
     color: #88d8d0;
     margin-bottom: 15px;
-    border: none; /* เอาเส้นขีดข้างออกเพื่อให้ดูเป็นส่วนสรุป */
+    border: none; 
     padding: 0;
 }
 
@@ -178,7 +208,7 @@ footer {
 }
 
 .contact-links a {
-    color: #ff99aa; /* ใช้สีชมพูหลักของเว็บ */
+    color: #ff99aa; 
     text-decoration: none;
     font-weight: 600;
     font-size: 1rem;
@@ -186,7 +216,6 @@ footer {
     position: relative;
 }
 
-/* เอฟเฟกต์เส้นใต้เวลา Hover */
 .contact-links a::after {
     content: '';
     position: absolute;
@@ -215,10 +244,16 @@ footer {
     text-transform: uppercase;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
-    header + .container, header + main.container { margin-top: 130px !important; }
+    header + .container, header + main.container { margin-top: 140px !important; }
+    .header-flex { flex-direction: column; text-align: center; }
+    .social-links { justify-content: center; }
     .hero { flex-direction: column; text-align: center; }
-    .project-grid, .project-info-grid, .gallery-grid { grid-template-columns: 1fr; }
-    .header-flex { flex-direction: column; gap: 10px; }
+    .profile-img img { width: 200px; height: 200px; }
+    .project-grid, .project-info-grid, .gallery-grid, .gallery-grid-full { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+    .contact-links { flex-direction: column; gap: 15px; }
+    header + .container, header + main.container { margin-top: 160px !important; }
 }
