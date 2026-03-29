@@ -147,11 +147,14 @@ h2 { color: #88d8d0; margin-bottom: 25px; border-left: 4px solid #ff99aa; paddin
 .project-card:hover { transform: translateY(-5px); border-color: #ff99aa; }
 .project-card img { width: 100%; height: 200px; object-fit: cover; }
 .card-body { padding: 20px; }
+.card-body-sub { color: #88d8d0; font-size: 1rem;}
 
 .back-link { color: #ff99aa; text-decoration: none; display: inline-block; margin-bottom: 20px; }
 .hero-image { width: 100%; max-width: 900px; border-radius: 12px; display: block; margin: 0 auto 30px; }
 .project-info-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 20px; margin-bottom: 30px; }
-.info-box { background: #1c1c1c; padding: 20px; border-radius: 10px; border: 1px solid #222; }
+.info-box { background: #1c1c1c; padding: 30px; border-radius: 10px; border: 1px solid #222; }
+
+.text-box-screenshot {margin-top: 50px; margin-bottom: 30px; font-size: 1.2rem; color: #ff99aa;}
 
 .gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
 .gallery-grid img { width: 100%; height: 250px; object-fit: cover; border-radius: 8px; }
@@ -255,4 +258,11 @@ footer {
 @media (max-width: 480px) {
     .contact-links { flex-direction: column; gap: 15px; }
     header + .container, header + main.container { margin-top: 160px !important; }
+}
+
+.video-container {
+  max-width: 900px;
+  margin: 0 auto 30px;
+  border-radius: 12px;
+  overflow: hidden;
 }
